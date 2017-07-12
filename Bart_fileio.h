@@ -42,36 +42,6 @@ namespace Gadgetron{
     return outputFolderPath;
   }
   
-  template<typename T>
-  void write_BART_hdr(const char* filename, std::vector<T> &DIMS)
-  {
-    const size_t MAX_DIMS = 16;
-    std::string filename_s = std::string(filename) + std::string(".hdr");
-    std::vector<size_t> v(MAX_DIMS, 1);
-    assert(DIMS.size() < MAX_DIMS);
-    std::copy(DIMS.cbegin(), DIMS.cend(), v.begin());
-    std::ofstream pFile;
-    pFile.open(filename_s, std::ofstream::out);
-    if (!pFile.is_open())
-      GERROR("Failed to write into file: %s\n", filename);
-    pFile << "# Dimensions\n";
-    std::copy(v.cbegin(), v.cend(), std::ostream_iterator<size_t>(pFile, " "));
-    pFile.close();
-  }
-  
-  template<typename T, typename U>
-  void write_BART_Files(const char* filename, std::vector<T> &DIMS, std::vector<U> &DATA)
-  {
-    write_BART_hdr(filename, DIMS);
-    std::string filename_s = std::string(filename) + std::string(".cfl");
-    std::fstream pFile(filename_s, std::ios::out | std::ios::binary);
-    if (!pFile.is_open())
-      GERROR("Failed to write into file: %s\n", filename);
-    pFile.write(reinterpret_cast<char*>(&DATA[0]), DATA.size()*sizeof(float));
-    pFile.close();
-  }
-  
-  
   template<typename U>
   void write_BART_Array(const char* filename, hoNDArray<U> *a)
   {
@@ -104,68 +74,6 @@ namespace Gadgetron{
     pFile.write(reinterpret_cast<char*>(a->get_data_ptr()), a->get_number_of_elements()*sizeof(U));
     pFile.close();
   }
-  
-  std::vector<size_t> read_BART_hdr(const char *filename)
-  {
-    std::string filename_s = std::string(filename) + std::string(".hdr");
-    std::ifstream infile(filename_s);
-    if (!infile.is_open())
-      GERROR("Failed to open file: %s\n", filename_s.c_str());
-    
-    std::vector<size_t> DIMS;
-    if (infile.is_open())
-    {
-      std::vector<std::string> tokens;
-      std::string line;
-      
-      while (std::getline(infile, line, '\n'))
-      {
-	tokens.push_back(line);
-      }
-      
-      // Parse the dimensions
-      const std::string s = tokens[1];
-      std::stringstream ss(s);
-      std::string items;
-      while (getline(ss, items, ' ')) {
-	DIMS.push_back(std::stoi(items, nullptr, 10));
-      }
-      infile.close();
-    }
-    
-    return(DIMS);
-  }
-  
-  
-  std::pair< std::vector<size_t>, std::vector<std::complex<float> > >
-  read_BART_files(const char *filename)
-  {
-    // Load the header file
-    auto DIMS = read_BART_hdr(filename);
-    
-    // Load the cfl file
-    std::string filename_s = std::string(filename) + std::string(".cfl");
-    std::fstream infile(filename_s, std::ios::in | std::ios::binary);
-    if (!infile.is_open())
-      GERROR("Failed to open file: %s\n", filename_s.c_str());
-    
-    infile.seekg(0, infile.end);
-    size_t size = static_cast<long>(infile.tellg());
-    infile.seekg(0);
-    std::vector<float> buffer(size);
-    infile.read(reinterpret_cast<char*>(&buffer[0]), size);
-    infile.close();
-    // Reformat the data
-    unsigned long count = 0;
-    std::vector< std::complex<float> > Data;
-    Data.reserve(buffer.size() / 2);
-    
-    for (size_t count = 0; count < buffer.size(); count += 2)
-      Data.push_back(std::complex<float> (buffer[count], buffer[count + 1]));
-    
-    return (std::pair< std::vector<size_t>, std::vector< std::complex<float> > >(DIMS, Data));
-  }
-  
   
   template <class T> 
   boost::shared_ptr< hoNDArray<T> > read_BART_Array(const char* filename)
