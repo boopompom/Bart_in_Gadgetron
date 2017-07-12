@@ -21,8 +21,6 @@
 #include <functional>
 #include <iomanip>
 
-
-
 namespace Gadgetron{
   
   std::string CreateBartFileFolder(std::string workLocation_)
