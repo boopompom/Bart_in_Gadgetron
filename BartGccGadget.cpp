@@ -6,7 +6,6 @@
  * Date: 05/17/2017
  * Version: 0.0.1
  *******************************************************************/
-
 #include "BartGccGadget.h"
 
 namespace Gadgetron {
