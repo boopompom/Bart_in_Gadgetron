@@ -106,9 +106,6 @@ namespace Gadgetron {
       uint16_t LOC = static_cast<uint16_t>(dbuff.data_.get_size(6));
       DIMS = { E0, E1, E2, CHA, N, S, LOC };
       
-      // prepare ref data for coil map calculation
-      std::vector<size_t> data_dim;
-      dbuff.data_.get_dimensions(data_dim);
       
       // reference Data 7D, fixed order [E0, E1, E2, CHA, N, S, LOC]
       uint16_t E0_ref = static_cast<uint16_t>(ref.get_size(0));
