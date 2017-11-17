@@ -1,8 +1,4 @@
-# BartGccGadget
-Version 1:
-Geometric Coil Compression Gadget for 3D Cartesian data using Bart.
-This Gadget aims to complement the GenericReconEigenChannelGadget. 
-
-Version 2:
-The Geometric Coil Compression method will be implemented into Gadgetron without calling Bart.
-The speed may be improved. 
+#
+Integrate Bart into Gadgetron
+1. BartGccGadget for Coil Compression of Cartesian 3D data
+2. BartReconGadget for L1-ESPIRiT Reconstruction of Cartesian 3D data. (Fast recon relies on rsense command provided in old version of Bart). The communication between Bart and Gadgetron is through a user-defined script file. The data write/read is implemented via .cfl/.hdr files.
