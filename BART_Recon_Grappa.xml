@@ -17,9 +17,6 @@
   <!-- writer -->
   <writer><slot>1022</slot><dll>gadgetron_mricore</dll><classname>MRIImageWriter</classname></writer>
   
-  <!-- Brain and Neck Coil FFT scaling factor -->
-  <gadget><name>BrainNeckCoilScalingFactor</name><dll>gadgetron_mricore</dll><classname>BrainNeckCoilCorrectionGadget</classname></gadget>
-  
   <!-- Noise prewhitening -->
   <gadget>
     <name>NoiseAdjust</name>
@@ -81,7 +78,7 @@
     <property><name>BartWorkingDirectory</name><value>/home/amax/</value></property>
     <property><name>BartWorkingDirectoryDelete</name><value>true</value></property>
     <property><name>CalibSize</name><value>24</value></property>
-    <property><name>DstChaNum</name><value>10</value></property>
+    <property><name>DstChaNum</name><value>16</value></property>
     
     <property><name>perform_timing</name><value>true</value></property>
     <property><name>verbose</name><value>true</value></property>
