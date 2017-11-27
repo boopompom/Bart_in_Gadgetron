@@ -22,9 +22,6 @@ add_library(gadgetron_bart SHARED
   Bart_fileio.h
   
   BART_Recon.xml 
-  BART_Recon_cloud.xml
-  BART_Recon_new.xml
-  BART_Recon_Spirit.xml
   BART_Recon_Grappa.xml
 )
 
@@ -59,8 +56,5 @@ install (FILES
 
 install(FILES 
    BART_Recon.xml 
-   BART_Recon_cloud.xml 
-   BART_Recon_new.xml 
-   BART_Recon_Spirit.xml 
    BART_Recon_Grappa.xml 
    DESTINATION ${GADGETRON_INSTALL_CONFIG_PATH} COMPONENT main)
