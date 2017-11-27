@@ -17,9 +17,6 @@
   <!-- writer -->
   <writer><slot>1022</slot><dll>gadgetron_mricore</dll><classname>MRIImageWriter</classname></writer>
   
-  <!-- Brain and Neck Coil FFT scaling factor -->
-  <gadget><name>BrainNeckCoilScalingFactor</name><dll>gadgetron_mricore</dll><classname>BrainNeckCoilCorrectionGadget</classname></gadget>
-  
   <!-- Noise prewhitening -->
   <gadget>
     <name>NoiseAdjust</name>
