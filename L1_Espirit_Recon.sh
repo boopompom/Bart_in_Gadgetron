@@ -51,7 +51,6 @@ echo "---- Reconstruction ----"
 echo "----Step 1: ESPIRiT Calibration               ----"
 /home/amax/bart/bart ecalib -r${CALIB} -k${KRN} -m${ESPMAP} -S -t0.0005 -c0.9 ${kspace} maps
 echo "----Step 2: L1-SENSE Reconstruciton on GPU    ----"
-#/home/amax/bart/bart pics -S -l1 -r${THRESH} -i${NITER} ${kspace} maps ims_soft_sense
-/home/amax/bart-0.3.01/bart rsense -S -g -l1 -r${THRESH} -i${NITER} ${kspace} maps ims_soft_sense fakekspace
-#echo "----Step 3: Fake kspace with Data consistency ----"
-#/home/amax/bart/bart fakeksp -r ims_soft_sense ${kspace} maps fakekspace
+/home/amax/bart/bart pics -S -l1 -r${THRESH} -i${NITER} ${kspace} maps ims_soft_sense
+echo "----Step 3: Fake kspace with Data consistency ----"
+/home/amax/bart/bart fakeksp -r ims_soft_sense ${kspace} maps fakekspace
