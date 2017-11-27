@@ -1,6 +1,7 @@
+
 # Integrate Bart into Gadgetron
 1. BartGccGadget implements Geometric Coil Compression (GCC) [1] for Cartesian 3D data. 
-2. BartReconGadget for L1-ESPIRiT Reconstruction of Cartesian 3D data. The communication between Bart and Gadgetron is through a user-defined script file. The data write/read is implemented via .cfl/.hdr files.
+2. BartReconGadget calls ESPIRiT calibration and PICS reconstruciton provided in Bart to implement L1-ESPIRiT reconstruction of Cartesian 3D data. The communication between Bart and Gadgetron is through a user-defined shell script file (which can be used/tested without Gadgetron). The data write/read is implemented via .cfl/.hdr files.
 
 Reference
 [1] Tao Zhang, JM Pauly, SS Vasanawala, Michael Lustig. Coil Compression for Accelerated Imaging with Cartesian Sampling. Magn Reson Med, 2013, 69:571-582.
