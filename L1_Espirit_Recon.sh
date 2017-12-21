@@ -25,7 +25,7 @@ while getopts "r:k:m:w:i:d" opt; do
 	;;
 	w)
 		THRESH=$OPTARG
-                echo "Regularization weight:${THRESH}"
+                echo "PICS L1 regularization weight:${THRESH}"
         ;;
         i)
                 NITER=$OPTARG
