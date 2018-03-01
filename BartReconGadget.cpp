@@ -223,10 +223,10 @@ namespace Gadgetron {
 	
 	
 	if (perform_timing.value()) { gt_timer_.start("BartReconGadget::send_out_image_array"); }
-	std::ostringstream ostr_image;
-	ostr_image << "ESPIRIT-" << std::setprecision(5) << lambda_l1.value();
-	std::string imageInfo = ostr_image.str();
-	this->send_out_image_array_online(recon_bit_->rbit_[e], recon_obj_[e].recon_res_, e, image_series.value() + ((int)e + 1), GADGETRON_IMAGE_REGULAR,imageInfo);
+	//std::ostringstream ostr_image;
+	//ostr_image << "ESPIRIT-" << std::setprecision(5) << lambda_l1.value();
+	//std::string imageInfo = ostr_image.str();
+	this->send_out_image_array(recon_bit_->rbit_[e], recon_obj_[e].recon_res_, e, image_series.value() + ((int)e + 1), GADGETRON_IMAGE_REGULAR);
 	if (perform_timing.value()) { gt_timer_.stop(); }
 	
       }
